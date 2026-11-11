@@ -1,0 +1,158 @@
+﻿<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learning Journal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+@page{size:A4 portrait;margin:0}
+:root{--paper:#fbf7ee;--ink:#2f3a45;--sage:#9cc5a1;--peach:#f6c4a8;--lav:#cdbfe8;--sky:#a9d3ea;--butter:#f8e08e;--rose:#f29eb0;--kraft:#c99a6b;--deep:#6b4a2f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#dfe6e3}
+body{font-family:'Patrick Hand','Ink Free','Segoe Print',cursive;color:var(--ink);display:flex;flex-direction:column;align-items:center;padding:16px 0 30px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.bar{width:210mm;display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px;font-family:'Plus Jakarta Sans',Segoe UI,sans-serif;font-size:12px;color:#5b6b66}
+.bar button{font:inherit;font-weight:700;border:0;border-radius:20px;padding:8px 16px;cursor:pointer;background:#2f3a45;color:#fff;transition:.2s}
+.bar button:hover{background:#e0735c;transform:translateY(-1px)}
+.sheet{width:210mm;height:297mm;position:relative;overflow:hidden;padding:30px 38px 24px;background:
+ radial-gradient(circle at 100% 0,#d9ece0 0 150px,transparent 151px),
+ radial-gradient(circle at 0 100%,#f9dccb 0 130px,transparent 131px),
+ radial-gradient(#e6d9c3 1.2px,transparent 1.5px) 0 0/20px 20px,var(--paper);
+ box-shadow:0 14px 44px rgba(40,60,50,.22);display:flex;flex-direction:column;gap:15px}
+.sheet>*{position:relative;z-index:1}
+.tape{position:absolute;height:20px;width:74px;opacity:.78;z-index:3;background:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 4px,transparent 4px 8px),var(--c,#f8e08e)}
+/* header */
+.head{display:flex;justify-content:space-between;align-items:center;height:92px}
+.tag{position:relative;background:linear-gradient(135deg,#d3a678,#b98652);color:#fff8e4;padding:12px 28px 12px 40px;clip-path:polygon(9% 0,100% 0,100% 100%,9% 100%,0 50%);transform:rotate(-2deg);box-shadow:0 4px 8px rgba(0,0,0,.2);transition:transform .3s;cursor:default}
+.tag:hover{transform:rotate(1deg) scale(1.03)}
+.tag h1{font-size:33px;line-height:1;letter-spacing:2px;text-transform:uppercase;text-shadow:2px 2px 0 var(--deep)}
+.tag h1 span{display:block;font-family:Caveat,cursive;font-size:25px;text-transform:none;letter-spacing:1px;margin-left:46px;color:#ffe8a8;text-shadow:1px 1px 0 var(--deep)}
+.pin{position:absolute;left:16px;top:50%;width:13px;height:13px;margin-top:-6px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#e0735c 45%,#a73c2a)}
+.date{font-size:21px;background:var(--peach);padding:7px 22px;border-radius:6px;transform:rotate(2deg);box-shadow:0 3px 8px rgba(0,0,0,.15);position:relative}
+.date::before,.date::after{content:"";position:absolute;top:50%;width:8px;height:8px;border-radius:50%;background:var(--paper);margin-top:-4px}
+.date::before{left:-4px}.date::after{right:-4px}
+.ribbon{font-family:'Plus Jakarta Sans',Segoe UI,sans-serif;font-size:11px;font-weight:500;display:flex;justify-content:space-between;gap:10px;border:1.5px dashed #c9b79a;border-radius:10px;padding:6px 14px;background:#fffdf8aa}
+.ribbon b{color:#b45f3c}
+/* row1 */
+.row1{display:grid;grid-template-columns:262px 1fr;gap:18px;height:360px}
+.stack{position:relative;height:100%}
+.pol{position:absolute;left:6px;top:6px;width:244px;background:#fff;padding:10px 10px 46px;box-shadow:2px 6px 16px rgba(0,0,0,.2);cursor:pointer;transition:transform .55s cubic-bezier(.3,1.3,.5,1),opacity .4s,box-shadow .3s}
+.pol img{display:block;width:100%;height:250px;object-fit:cover}
+.pol span{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:Caveat,cursive;font-size:21px;color:var(--deep)}
+.pol[data-p="0"]{transform:rotate(-3deg);z-index:4}
+.pol[data-p="1"]{transform:translate(26px,10px) rotate(7deg);z-index:3}
+.pol[data-p="2"]{transform:translate(-6px,16px) rotate(-8deg);z-index:2}
+.pol[data-p="3"]{transform:translate(6px,4px) rotate(9deg);z-index:1}
+.pol:not([data-p="0"]) span{opacity:0}.pol[data-p="0"]:hover{transform:rotate(-1deg) scale(1.04);box-shadow:4px 10px 24px rgba(0,0,0,.28)}
+.dots{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:7px;align-items:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:#7a8a84}
+.dots i{width:9px;height:9px;border-radius:50%;background:#cfd9d4;cursor:pointer;transition:.25s}
+.dots i.on{background:var(--rose);transform:scale(1.35)}
+.heart{position:absolute;left:-4px;top:-8px;z-index:9;font-size:34px;color:var(--rose);text-shadow:0 2px 0 #fff;transform:rotate(-12deg);cursor:pointer;transition:.25s;line-height:1}
+.heart:hover{transform:rotate(8deg) scale(1.25)}
+/* cards */
+.card{background:#fff;border:1.5px solid #ece0cc;border-radius:6px;padding:16px 18px 12px;box-shadow:2px 4px 10px rgba(80,60,40,.1);position:relative;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-3px) rotate(-.25deg);box-shadow:3px 9px 18px rgba(80,60,40,.17)}
+.q{display:flex;gap:9px;align-items:flex-start;font-size:19.5px;line-height:1.15;font-weight:700;margin-bottom:6px}
+.q em{flex:none;width:27px;height:27px;border-radius:50%;background:var(--c);display:grid;place-items:center;font:700 13px 'Plus Jakarta Sans',sans-serif;font-style:normal;margin-top:-1px}
+.card p{font-size:17px;line-height:1.42;text-align:left}
+.hl{background:linear-gradient(transparent 52%,var(--butter) 52% 92%,transparent 92%);padding:0 2px;cursor:help;position:relative;transition:.2s}
+.hl:hover{background:linear-gradient(transparent 20%,#f6d35c 20% 95%,transparent 95%)}
+.hl::after{content:attr(data-tip);position:absolute;left:50%;bottom:130%;transform:translateX(-50%) scale(.8);width:max-content;max-width:210px;background:#2f3a45;color:#fff;font:500 11px/1.35 'Plus Jakarta Sans',sans-serif;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s;z-index:20}
+.hl:hover::after{opacity:1;transform:translateX(-50%) scale(1)}
+.row1 .card{display:flex;flex-direction:column;justify-content:center}
+.row3{display:grid;grid-template-columns:1.22fr 1fr;gap:18px}
+.note{background:#fff7c8;padding:16px 16px 10px;border-radius:2px 2px 14px 2px;box-shadow:2px 6px 12px rgba(120,100,20,.2);transform:rotate(1.2deg);transition:transform .3s;position:relative}
+.note:hover{transform:rotate(0)}
+.note h3{font-family:Caveat,cursive;font-size:25px;line-height:1;margin-bottom:5px;color:#8a5a1e}
+.note label{display:flex;gap:8px;align-items:flex-start;font-size:16.5px;line-height:1.25;padding:2.5px 0;cursor:pointer}
+.note input{appearance:none;flex:none;width:17px;height:17px;border:2px solid #8a5a1e;border-radius:5px;margin-top:1px;cursor:pointer;position:relative;transition:.2s}
+.note input:checked{background:var(--sage);border-color:#4f8a58}
+.note input:checked::after{content:"✓";position:absolute;left:1.5px;top:-5px;font-size:15px;color:#fff;font-weight:700}
+.note input:checked+span{color:#6a6240}
+.prog{height:7px;border-radius:5px;background:#f0e3a3;margin-top:7px;overflow:hidden}
+.prog div{height:100%;width:100%;background:linear-gradient(90deg,var(--rose),var(--peach));transition:width .5s}
+.quote{text-align:center;font-size:19px;color:#b3405a;background:#fde3e8;border:1.5px dashed var(--rose);border-radius:30px;padding:6px 16px;margin:0 20px;transition:.3s}
+.quote:hover{background:#fbd0da;transform:scale(1.02)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:10.5px;color:#76857f}
+.foot i{display:inline-block;width:9px;height:9px;border-radius:50%;background:#d63b3b;margin-right:6px}
+.sun{position:absolute;right:30px;bottom:56px;font-size:30px;z-index:5;transition:.4s;cursor:pointer}
+.sun:hover{transform:rotate(25deg) scale(1.3)}
+@media print{
+ html,body{background:#fff;padding:0;display:block}
+ .bar{display:none!important}
+ .sheet{box-shadow:none;width:210mm;height:297mm}
+ .hl::after{display:none}
+ .pol,.card,.note,.tag{transition:none!important}
+}
+</style></head><body>
+<div class="bar"><span>Learning Journal &bull; A4 (210 &times; 297 mm) &bull; klik foto, arahkan kursor ke stabilo kuning, centang rencana</span><button onclick="print()">⬇ Simpan PDF</button></div>
+
+<div class="sheet">
+ <div class="head">
+  <div class="tag"><i class="pin"></i><h1>Learning<span>Journal</span></h1></div>
+  <div class="date">11 November 2026</div>
+ </div>
+ <div class="ribbon"><span><b>Nama:</b> Siti Halimah</span><span><b>Unit magang:</b> PDIS - BOSDM</span><span>BRIN Internship Challenge 2026</span></div>
+
+ <div class="row1">
+  <div class="stack" id="stack">
+   <div class="heart" title="Klik aku!" onclick="burst(event)">♥</div>
+   <div class="pol" data-p="0"><img src="Foto/WhatsApp Image 2026-11-11 at 08.11.16.jpeg" style="object-position:50% 78%"><span>Internship BRIN 2026 ✨</span></div>
+   <div class="pol" data-p="1"><img src="Foto/WhatsApp Image 2026-11-11 at 08.12.53.jpeg" style="object-position:50% 45%"><span>Capacity Building</span></div>
+   <div class="pol" data-p="2"><img src="Foto/WhatsApp Image 2026-11-11 at 08.13.46.jpeg" style="object-position:50% 80%"><span>Sehat mental, kerja bahagia</span></div>
+   <div class="pol" data-p="3"><img src="Foto/WhatsApp Image 2026-11-11 at 08.14.38.jpeg" style="object-position:50% 40%"><span>Tumbuh bersama</span></div>
+   <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
+   <div class="tape" style="left:92px;top:-6px;--c:#a9d3ea;transform:rotate(-4deg)"></div>
+  </div>
+  <section class="card">
+   <div class="tape" style="right:24px;top:-10px;--c:#f6c4a8;transform:rotate(3deg)"></div>
+   <div class="q"><em style="--c:var(--sky)">1</em>Apa yang saya pelajari dari Pelatihan Keterampilan Interpersonal dan Komunikasi Efektif?</div>
+   <p>Komunikasi efektif bukan sekadar berbicara, tetapi memastikan pesan <span class="hl" data-tip="Pesan yang dikirim dipahami sama oleh penerima dan menghasilkan umpan balik yang sesuai.">dipahami sama</span> oleh kedua pihak. Saya mempelajari lima prinsip: <span class="hl" data-tip="Clarity, Conciseness, Consistency, Empathy, Feedback.">clarity, conciseness, consistency, empathy, feedback</span>. Komunikasi <span class="hl" data-tip="Jalan tengah antara pasif dan agresif: tegas, tetapi tetap menghormati orang lain.">asertif</span> membantu saya menyuarakan pendapat tanpa mengabaikan rasa hormat, dan informasi sensitif perlu disampaikan dengan empati, jelas, fokus pada solusi, di waktu dan tempat yang tepat. Saya juga belajar bahwa mengenal keunikan anggota tim menjadi sumber <span class="hl" data-tip="Perbedaan latar belakang dan keahlian menciptakan perspektif kaya dan solusi out-of-the-box.">inovasi</span> dan kolaborasi yang baik.</p>
+  </section>
+ </div>
+
+ <section class="card">
+  <div class="tape" style="left:40%;top:-10px;--c:#cdbfe8;transform:rotate(-2deg)"></div>
+  <div class="q"><em style="--c:var(--sage)">2</em>Apa yang saya pelajari dari Pelatihan Pengembangan Diri dan Mentalitas Kerja Positif?</div>
+  <p>Setiap tindakan kerja harus selaras dengan <span class="hl" data-tip="Visi, misi, dan nilai organisasi menjadi landasan bertindak dan mengambil keputusan.">visi, misi, dan nilai organisasi</span>, dijalankan dengan etika, integritas, dan disiplin. Saya belajar membangun <span class="hl" data-tip="Dorongan internal untuk unggul dan menghasilkan kinerja terbaik.">motivasi berprestasi</span>, <span class="hl" data-tip="Growth mindset dan sikap etis: tantangan dipandang sebagai peluang belajar.">pola pikir bertumbuh</span>, dan efektivitas diri menurut Albert ELLIS, yaitu keyakinan pada kemampuan diri. Lewat model <span class="hl" data-tip="Activating event, Belief, Consequence, Dispute: bantah pikiran irasional dengan logika sehat.">ABCD</span> saya sadar bahwa kritik adalah data untuk perbaikan, bukan serangan terhadap harga diri. Semuanya bermuara pada <span class="hl" data-tip="Kesiapan mental, fleksibilitas berpikir, dan kemauan terus belajar menghadapi perubahan.">adaptabilitas</span>, yaitu menjadikan perubahan sebagai peluang untuk tumbuh.</p>
+ </section>
+
+ <div class="row3">
+  <section class="card">
+   <div class="tape" style="right:30px;top:-10px;--c:#f8e08e;transform:rotate(2deg)"></div>
+   <div class="q"><em style="--c:var(--peach)">3</em>Apa yang saya dapatkan dari pembelajaran ini?</div>
+   <p>Ilmu yang sangat berharga sebagai bekal menghadapi tantangan dunia kerja. Belajar mandiri melalui LMS melatih disiplin dan tanggung jawab. Saya sadar perlu lebih tenang menerima masukan dan lebih berani bersuara secara asertif. Saya semakin termotivasi menjadi pribadi yang berkarakter, berintegritas, dan beretos kerja tinggi.</p>
+  </section>
+  <section class="note" id="plan">
+   <div class="tape" style="left:50%;top:-10px;margin-left:-37px;--c:#f29eb0;transform:rotate(-3deg)"></div>
+   <h3>Rencana di BRIN ✍</h3>
+   <label><input type="checkbox" checked><span>Menyusun PDP dengan target mingguan</span></label>
+   <label><input type="checkbox" checked><span>Lapor ke mentor jelas &amp; ringkas, minta feedback</span></label>
+   <label><input type="checkbox" checked><span>Jeda &amp; ABCD saat menerima masukan</span></label>
+   <label><input type="checkbox" checked><span>Kolaborasi &amp; hargai keahlian tim</span></label>
+   <label><input type="checkbox" checked><span>Refleksi diri rutin &amp; adaptif</span></label>
+   <div class="prog"><div id="pb"></div></div>
+  </section>
+ </div>
+
+ <div class="quote">“Prestasi besar lahir dari kebiasaan kecil yang dikelola dengan baik.”</div>
+ <div class="foot"><span>Pelatihan Mandiri &bull; LMS BRILIANT (briliant.brin.go.id)</span><span><i></i>Badan Riset dan Inovasi Nasional</span></div>
+ <div class="sun" onclick="burst(event)">🌻</div>
+</div>
+
+<script>
+// foto bertumpuk: klik untuk menukar urutan
+const pols=[...document.querySelectorAll('.pol')],dots=[...document.querySelectorAll('#dots i')];
+let order=[0,1,2,3];
+function render(){order.forEach((id,pos)=>pols[id].dataset.p=pos);dots.forEach((d,i)=>d.classList.toggle('on',i==order[0]))}
+function next(){order.push(order.shift());render()}
+pols.forEach(p=>p.onclick=next);
+dots.forEach((d,i)=>d.onclick=()=>{while(order[0]!=i)order.push(order.shift());render()});
+// centang rencana
+const ck=[...document.querySelectorAll('#plan input')];
+ck.forEach(c=>c.onchange=()=>pb.style.width=ck.filter(x=>x.checked).length/ck.length*100+'%');
+// efek hati
+function burst(e){for(let i=0;i<7;i++){const h=document.createElement('div');h.textContent=['💖','✨','🌼','💛'][i%4];h.style.cssText=`position:fixed;left:${e.clientX+(Math.random()-.5)*80}px;top:${e.clientY}px;font-size:22px;pointer-events:none;z-index:99;transition:all 1.1s ease-out`;document.body.appendChild(h);requestAnimationFrame(()=>{h.style.transform=`translateY(-${70+Math.random()*60}px) scale(1.5)`;h.style.opacity=0});setTimeout(()=>h.remove(),1200)}}
+// skala di layar kecil
+function fit(){document.body.style.zoom=Math.min(1,(document.documentElement.clientWidth-20)/794)}
+addEventListener('resize',fit);fit();
+</script>
+</body></html>
+
